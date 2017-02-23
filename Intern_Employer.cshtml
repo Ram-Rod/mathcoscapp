@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <span class="label"><label for="sem_year">Current Date</label></span>
-            <input type="date" name="sem_year" id="sem_year" readonly  />
+            @Html.TextBox("txtFrmDate", DateTime.Now.ToString("dd-MMM-yyyy"))
         </div>
     </form>
 </div>
