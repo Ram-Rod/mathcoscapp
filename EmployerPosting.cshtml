@@ -7,70 +7,79 @@
 
 <div id="employer_app" title="new_employer_application">
     <form id="entry-form" method="post" enctype="multipart/form-data">
-        <div class="row">
+        <h1>Employer Job Posting</h1>
+        <div class="left">
             <span class="label"><label for="cname">Company's Name:</label></span>
             <input type="text" name="cname" id="cname" class="required" />
         </div>
-
-        <div class="row">
-            <span class="label"><label for="cwebsite">Company's Website:</label></span>
-            <input type="text" name="cwebsite" id="cwebsite" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="ename">Employee's Name:</label></span>
-            <input type="text" name="ename" id="ename" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="ephone">Employee's Phone Number:</label></span>
-            <input type="text" name="ephone" id="ephone" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="street_address">Street Address:</label></span>
-            <input type="text" name="street_address" id="street_address" class="required" />
-            @*<textarea name="street_address" id="street_address" class="required"></textarea>*@
-        </div>
-        <div class="row">
-            <span class="label"><label for="city">City:</label></span>
-            <input type="text" name="city" id="city" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="state">State:</label></span>
-            <input type="text" name="state" id="state" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="zip">Zipcode:</label></span>
-            <input type="text" name="zip" id="zip" class="required" />
-            @*<textarea name="zip" id="zip" class="required"></textarea>*@
-        </div>
-        <div class="row">
+        <div>
             <span class="label"><label for="sem_year">Semester/Year of Employment: (Ex. Fall 2017)</label></span>
             <input type="text" name="sem_year" id="sem_year" class="required" />
         </div>
-        <div class="row">
+        <div class="clear"></div>
+        <div class="left">
+            <span class="label"><label for="cwebsite">Company's Website:</label></span>
+            <input type="text" name="cwebsite" id="cwebsite" class="required" />
+        </div> 
+        <div>
             <span class="label">Paid or Unpaid Internship:</span>
             <label><input type="radio" name="compensated" class="required" />Paid </label>
             <label><input type="radio" name="compensated" />Unpaid</label>
         </div>
-        <div class="row">
+        <div class="clear"></div>
+        <div class="left">
+            <span class="label"><label for="ename">Employee's Name:</label></span>
+            <input type="text" name="ename" id="ename" class="required" />
+        </div>
+        <div>
             <span class="label">Will you be students supervisor:</span>
             <label><input type="radio" name="ssuper" class="required" />Yes </label>
             <label><input type="radio" name="ssuper" />No</label>
         </div>
-        <div class="row">
+        <div class="clear"></div>
+        <div class="left">
+            <span class="label"><label for="ephone">Employee's Phone Number:</label></span>
+            <input type="text" name="ephone" id="ephone" class="required" />
+        </div>
+        <div>
             <span class="label"><label for="sname">If no: Supervisors Name:</label></span>
-            <input type="text" name="sname" id="sname"  />
+            <input type="text" name="sname" id="sname" />
+
             <span class="label"><label for="semail">Supervisor's Email:</label></span>
             <input type="text" name="semail" id="semail" />
         </div>
-        <div class="row">
+        <div class="clear"></div>
+        <div class="left">
+            <span class="label"><label for="street_address">Street Address:</label></span>
+            <input type="text" name="street_address" id="street_address" class="required" />
+            @*<textarea name="street_address" id="street_address" class="required"></textarea>*@
+        </div>
+        <div>
             <span class="label"><label for="intern_req">Internship Requirements:</label></span>
             <textarea name="intern_req" id="intern_req" class="intern_req"></textarea>
         </div>
-        <div class="row">
+        <div class="clear"></div>
+        <div class="left">
+            <span class="label"><label for="city">City:</label></span>
+            <input type="text" name="city" id="city" class="required" />
+        </div>
+        <div class="clear"></div>
+        <div class="left">
+            <span class="label"><label for="state">State:</label></span>
+            <input type="text" name="state" id="state" class="required" />
+        </div>
+        <div class="clear"></div>
+        <div class="left">
+            <span class="label"><label for="zip">Zipcode:</label></span>
+            <input type="text" name="zip" id="zip" class="required" />
+            @*<textarea name="zip" id="zip" class="required"></textarea>*@
+        </div>
+        <div>
             <span class="label"><label for="intern_duties">Internship Duties:</label></span>
             <textarea name="intern_duties" id="intern_duties" class="goals"></textarea>
         </div>
-        <input type="submit" value="submit">
+        <div class="clear"></div>
+        <input type="Submit" value="submit">
         @*<div class="row">
             <span class="label"><label for="major">Class Standing:</label></span>
             <select name="major" id="major" class="required">
