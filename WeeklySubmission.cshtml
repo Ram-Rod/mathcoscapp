@@ -1,0 +1,39 @@
+﻿@*@Using Microsoft.Web.Helpers;*@
+@{
+    Layout = " _SULayout.cshtml";
+    Page.Title = "Weekly Submission Form";
+}
+
+
+<div id="intern_app" title="new_intern_application">
+    <form id="entry-form" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <span class="label">ID Number:</span>
+            <label><input type="text" name="id_num" class="required" /></label>
+        </div>
+        <div class="row">
+            <span class="label">First Name:</span>
+            <label><input type="text" name="fname" class="required" /></label>
+        </div>
+        <div class="row">
+            <span class="label">Last Name:</span>
+            <label><input type="text" name="lname" class="required" /></label>
+        </div>
+        <div class="row">
+            <span class="label"><label for="sem_year">Week</label></span>
+            <input type="date" name="wfrom" id="wfrom" class="required" />
+        </div>
+        <div class="row">
+            <label for="task_comp">Tasks Completed:</label><br />
+            <label><textarea rows="7" cols="30" name="task_comp" id="task_comp" class="required"></textarea></label>
+        </div>
+        <div class="row">
+            <span class="label">Challenges Faced:</span>
+            <label><input type="text" name="challenge_faced" class="required" /></label>
+        </div>
+        <div class="row">
+            <span class="label">Next Week Tasks:</span>
+            <label><input type="text" name="task_to_comp" class="required" /></label>
+        </div>
+    </form>
+</div>
