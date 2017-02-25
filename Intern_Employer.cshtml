@@ -7,10 +7,13 @@
 
 <div id="employer_Sign_app" title="employer_Sign_application">
     <form id="entry-form" method="post" enctype="multipart/form-data">
-        <div class="row">
+        <h1>Employer Signature Request Form</h1>
+        <div class="left">
+            <label></label>
             <span class="label">Intern Employer Signature:</span>
             <label><input type="text" name="fuse_uname" class="required" /></label>
         </div>
+        <div class="clear"></div>
         <div class="row">
             <span class="label"><label for="sem_year">Current Date</label></span>
             @Html.TextBox("txtFrmDate", DateTime.Now.ToString("dd-MMM-yyyy"))
