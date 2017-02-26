@@ -8,19 +8,19 @@
 <div id="intern_app" title="new_intern_application">
     <form id="entry-form" method="post" enctype="multipart/form-data">
         <div class="row">
-            <span class="label">ID Number:</span>
-            <label><input type="text" name="id_num" class="required" /></label>
+            <label for="id_num">ID Number:</label>
+            <label><input type="text" name="id_num" id="id_num" class="required" /></label>
         </div>
         <div class="row">
-            <span class="label">First Name:</span>
-            <label><input type="text" name="fname" class="required" /></label>
+            <label for="fname">First Name:</label>
+            <label><input type="text" name="fname" id="fname" class="required" /></label>
         </div>
         <div class="row">
-            <span class="label">Last Name:</span>
-            <label><input type="text" name="lname" class="required" /></label>
+            <label for="lname">Last Name: </label>
+            <label><input type="text" name="lname" id="lname" class="required" /></label>
         </div>
         <div class="row">
-            <span class="label"><label for="sem_year">Week</label></span>
+            <label for="wfrom">Week: </label>
             <input type="date" name="wfrom" id="wfrom" class="required" />
         </div>
         <div class="row">
