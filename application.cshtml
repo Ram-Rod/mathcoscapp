@@ -4,6 +4,8 @@
     Layout = "_SULayout.cshtml";
     Page.Title = "MATHEMATICS AND COMPUTER SCIENCE INTERNSHIP APPLICATION";
 
+    var db = Database.Open("MyConnectionString");
+    var selectQueryString = "SELECT * FROM APPLICATIONS";
 }
 
 <div id="intern_app" title="new_intern_application">
