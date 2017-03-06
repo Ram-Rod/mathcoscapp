@@ -4,38 +4,48 @@
     Layout = "_SULayout.cshtml";
     Page.Title = "MATHEMATICS AND COMPUTER SCIENCE INTERNSHIP APPLICATION";
 
-    <!-- Connect to Database -->
-    var db = Database.Open("MyConnectionString");
 
-    <!-- Grab contents of the form -->
-    var course = Request.Form["course"];
-    var sem_year = Request.Form["sem_year"];
-    var fname = Request.Form["fname ="];
-    var lname = Request.Form["lname"];
-    var major = Request.Form["major"];
-    var standing = Request.Form["standing"];
-    var student_address = Request.Form["student_address"];
-    var student_phone = Request.Form["student_phone"];
-    var student_email = Request.Form["student_email"];
-    var advisor_name = Request.Form["advisor_name"];
-    var advisor_email = Request.Form["advisor_email"];
-    var firm_name = Request.Form["firm_name"];
-    var firm_phone = Request.Form["firm_phone"];
-    var firm_address = Request.Form["firm_address"];
-    var supervisor_name = Request.Form["supervisor_name"];
-    var supervisor_title = Request.Form["supervisor_title"];
-    var supervisor_email = Request.Form["supervisor_email"];
-    var internship_name = Request.Form["internship_name"];
-    var goals = Request.Form["goals"];
 
     <!-- Insert from data into table -->
     if (IsPost)
     {
-        var insertQuery = "INSERT INTO MATHCOSC_APPLICATIONS (EMAIL, FNAME, LNAME, COURSE_SEMESTER, STANDING, MAJOR, ADDRESS, PHONE, ADVISOR_NAME, ADVISOR_EMAIL, FIRM_NAME, FIRM_PHONE, FIRM_ADDRESS, SUPERVISOR_NAME, SUPERVISOR_TITLE, SUPERVISOR_EMAIL, INTERNSHIP_TITLE, GOALS) " +
-            "VALUES (student_email, fname, lname, sem_year, standing, major, student_address, student_phone, advisor_name, advisor_email, firm_name, firm_phone, firm_address, supervisor_name, supervisor_title, supervisor_email, internship_name, goals)";
-        db.Execute(insertQuery);
-        
-       
+
+        <!-- Connect to Database -->
+        var db = Database.Open("MyConnectionString");
+
+        <!-- Grab contents of the form -->
+        var course = Request.Form["course"];
+        var sem_year = Request.Form["sem_year"];
+        var fname = Request.Form["fname"];
+        var lname = Request.Form["lname"];
+        var major = Request.Form["major"];
+        var standing = Request.Form["standing"];
+        var student_address = Request.Form["student_address"];
+        var student_phone = Request.Form["student_phone"];
+        var student_email = Request.Form["student_email"];
+        var advisor_name = Request.Form["advisor_name"];
+        var advisor_email = Request.Form["advisor_email"];
+        var firm_name = Request.Form["firm_name"];
+        var firm_phone = Request.Form["firm_phone"];
+        var firm_address = Request.Form["firm_address"];
+        var supervisor_name = Request.Form["supervisor_name"];
+        var supervisor_title = Request.Form["supervisor_title"];
+        var supervisor_email = Request.Form["supervisor_email"];
+        var internship_name = Request.Form["internship_name"];
+        var goals = Request.Form["goals"];
+        var completed = 1;
+        var approved = 1;
+
+        var insertQuery = "INSERT INTO MATHCOSC_APPLICATIONS (EMAIL, FNAME, LNAME, COURSE_SEMESTER, STANDING, MAJOR, ADDRESS, PHONE, ADVISOR_NAME, ADVISOR_EMAIL, FIRM_NAME, FIRM_PHONE, FIRM_ADDRESS, SUPERVISOR_NAME, SUPERVISOR_TITLE, SUPERVISOR_EMAIL, INTERNSHIP_TITLE, GOALS, COMPLETED, APPROVED) " +
+            "VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19)";
+        try {
+            db.Execute(insertQuery, student_email, fname, lname, sem_year, standing, major, student_address, student_phone, advisor_name, advisor_email, firm_name, firm_phone, firm_address, supervisor_name, supervisor_title, supervisor_email, internship_name, goals, completed, approved);
+        }
+        catch (Exception ex)
+        {
+            Response.Write("<p>" + ex + "</p>");
+        }
+
     }
 
 }
@@ -158,7 +168,7 @@
         <div class="clear"></div>
         <div class="left">
             <label for="firm_address">Firm or Institution Address:</label>
-            <input size="65" name="firm_address" id="firm_address" class="required" />
+            <input type="text" size="65" name="firm_address" id="firm_address" class="required" />
         </div>
         <div>
             <label for="supervisor_name">Work Supervisor's Name:</label>
