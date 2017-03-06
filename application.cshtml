@@ -4,17 +4,83 @@
     Layout = "_SULayout.cshtml";
     Page.Title = "MATHEMATICS AND COMPUTER SCIENCE INTERNSHIP APPLICATION";
 
+    <!-- Connect to Database -->
     var db = Database.Open("MyConnectionString");
-    var selectQueryString = "SELECT * FROM APPLICATIONS";
+
+    <!-- Grab contents of the form -->
+    var course = Request.Form["course"];
+    var sem_year = Request.Form["sem_year"];
+    var fname = Request.Form["fname ="];
+    var lname = Request.Form["lname"];
+    var major = Request.Form["major"];
+    var standing = Request.Form["standing"];
+    var student_address = Request.Form["student_address"];
+    var student_phone = Request.Form["student_phone"];
+    var student_email = Request.Form["student_email"];
+    var advisor_name = Request.Form["advisor_name"];
+    var advisor_email = Request.Form["advisor_email"];
+    var firm_name = Request.Form["firm_name"];
+    var firm_phone = Request.Form["firm_phone"];
+    var firm_address = Request.Form["firm_address"];
+    var supervisor_name = Request.Form["supervisor_name"];
+    var supervisor_title = Request.Form["supervisor_title"];
+    var supervisor_email = Request.Form["supervisor_email"];
+    var internship_name = Request.Form["internship_name"];
+    var goals = Request.Form["goals"];
+
+    <!-- Insert from data into table -->
+    if (IsPost)
+    {
+        var insertQuery = "INSERT INTO MATHCOSC_APPLICATIONS (EMAIL, FNAME, LNAME, COURSE_SEMESTER, STANDING, MAJOR, ADDRESS, PHONE, ADVISOR_NAME, ADVISOR_EMAIL, FIRM_NAME, FIRM_PHONE, FIRM_ADDRESS, SUPERVISOR_NAME, SUPERVISOR_TITLE, SUPERVISOR_EMAIL, INTERNSHIP_TITLE, GOALS) " +
+            "VALUES (student_email, fname, lname, sem_year, standing, major, student_address, student_phone, advisor_name, advisor_email, firm_name, firm_phone, firm_address, supervisor_name, supervisor_title, supervisor_email, internship_name, goals)";
+        db.Execute(insertQuery);
+        
+       
+    }
+
 }
 
-<div id="intern_app" title="new_intern_application">
-    <form id="entry-form" method="post" enctype="multipart/form-data">
-        <h1>Internship Application</h1>
+<!-- Form Validation -->
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#entry_form").validate({
+
+            rules: {
+                student_email: {
+                    email: true
+                },
+                advisor_email: {
+                    email: true
+                },
+                supervisor_email: {
+                    email: true
+                }
+            },
+
+            errorPlacement: function (error, element) {
+                if (element.attr("name") == "course") {
+                    error.insertAfter("#course");
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+
+        });
+    });
+
+</script> 
+
+<div id="intern_app">
+    <form id="entry_form" method="post" enctype="multipart/form-data">
+        <h1>Internship Credit Application</h1>
+
+        <!-- Student Information -->
+        <h3>Student Information</h3>
         <div class="left">
-            <label>Course Enrolled in: </label>
-            <label><input type="radio" name="fuse_uname" class="required" />COSC 380 </label>
-            <label><input type="radio" name="fuse_uname" />MATH 380</label>
+            <label id="course">Course Enrolled in: </label>
+            <label><input type="radio" name="course" class="required" />COSC 380 </label>
+            <label><input type="radio" name="course" />MATH 380</label>
         </div>
         <div>
             <label for="sem_year">Semester/Year of Enrollment: </label>
@@ -36,19 +102,11 @@
             <input type="text" size="30" name="lname" id="lname" class="required" />
         </div>
         <div class="clear"></div>
-
         <div class="left">
-            <label for="id_num">Student ID Number:</label>
-            <input type="text" name="id_num" id="id_num" class="required" />
-        </div>
-
-        <div>
             <label for="major">Major:</label>
             <input type="text" size="35" name="major" id="major" class="required" />
         </div>
-        <div class="clear"></div>
-
-        <div class="left">
+        <div>
             <label for="standing">Class Standing:</label>
             <select name="standing" id="standing" class="required">
                 <option value="" selected="true" disabled="disabled">Choose Standing</option>
@@ -58,25 +116,37 @@
                 <option value="Senior">Senior</option>
             </select>
         </div>
-        <div>
+        <div class="clear"></div>
+        <div class="left">
             <label for="student_address">Student Address:</label>
             <input type="text" size="60" name="student_address" id="student_address" class="required" />
         </div>
-        <div class="clear"></div>
-        <div class="left">
+        <div>
             <label for="student_phone">Student Phone Number:</label>
             <input type="text" name="student_phone" id="student_phone" class="required" />
         </div>
         <div class="clear"></div>
+        <div style="padding-bottom: 20px">
+            <label for="student_email">Student Email:</label>
+            <input type="text" size="40" name="student_email" id="student_email" class="required" />
+        </div>
+        <div class="clear"></div>
+
+
+        <!-- Advisor Information -->
+        <h3>Advisor Information</h3>
         <div class="left">
             <label for="advisor_name">Salisbury University Internship Advisor's Name:</label>
             <input type="text" name="advisor_name" id="advisor_name" size="25" class="required" />
         </div>
         <div>
             <label for="advisor_email">Salisbury University Internship Advisor's Email:</label>
-            <input type="text" name="advisor_email" id="advisor_email" size="30" class="required" />
+            <input type="text" name="advisor_email" id="advisor_email" size="40" class="required" />
         </div>
         <div class="clear"></div>
+
+        <!-- Company Information -->
+        <h3>Company Information</h3>
         <div class="left">
             <label for="firm_name">Firm or Institution Name:</label>
             <input type="text" name="firm_name" id="firm_name" class="required" />
@@ -101,10 +171,13 @@
         </div>
         <div>
             <label for="supervisor_email">Work Supervisor's Email:</label>
-            <input type="text" name="supervisor_email" id="supervisor_email" class="required" />
+            <input type="text" size="40" name="supervisor_email" id="supervisor_email" class="required" />
         </div>
         <div class="clear"></div>
-        <div class="left">
+
+        <!-- Internship Information -->
+        <h3>Internship Information</h3>
+        <div style="margin-bottom: 20px;">
             <label for="internship_name">Brief Name of Internship:</label>
             <input type="text" name="internship_name" id="internship_name" class="required" />
         </div>
