@@ -4,7 +4,10 @@
     Layout = "_SULayout.cshtml";
     Page.Title = "MATHEMATICS AND COMPUTER SCIENCE INTERNSHIP APPLICATION";
 
-
+    <!-- Store session variables as local variables so they can be added to form -->
+    var firstname = Session["firstname"];
+    var lastname = Session["lastname"];
+    var email = Session["email"];
 
     <!-- Insert from data into table -->
     if (IsPost)
@@ -15,7 +18,7 @@
 
         <!-- Grab contents of the form -->
         var course = Request.Form["course"];
-        var sem_year = Request.Form["sem_year"];
+        var sem_year = Request.Form["semester"] + " " + Request.Form["year"];
         var fname = Request.Form["fname"];
         var lname = Request.Form["lname"];
         var major = Request.Form["major"];
@@ -36,15 +39,12 @@
         var completed = 1;
         var approved = 1;
 
+
         var insertQuery = "INSERT INTO MATHCOSC_APPLICATIONS (EMAIL, FNAME, LNAME, COURSE_SEMESTER, STANDING, MAJOR, ADDRESS, PHONE, ADVISOR_NAME, ADVISOR_EMAIL, FIRM_NAME, FIRM_PHONE, FIRM_ADDRESS, SUPERVISOR_NAME, SUPERVISOR_TITLE, SUPERVISOR_EMAIL, INTERNSHIP_TITLE, GOALS, COMPLETED, APPROVED) " +
             "VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16, @17, @18, @19)";
-        try {
-            db.Execute(insertQuery, student_email, fname, lname, sem_year, standing, major, student_address, student_phone, advisor_name, advisor_email, firm_name, firm_phone, firm_address, supervisor_name, supervisor_title, supervisor_email, internship_name, goals, completed, approved);
-        }
-        catch (Exception ex)
-        {
-            Response.Write("<p>" + ex + "</p>");
-        }
+        db.Execute(insertQuery, student_email, fname, lname, sem_year, standing, major, student_address, student_phone, advisor_name, advisor_email, firm_name, firm_phone, firm_address, supervisor_name, supervisor_title, supervisor_email, internship_name, goals, completed, approved);
+
+
 
     }
 
@@ -93,23 +93,30 @@
             <label><input type="radio" name="course" />MATH 380</label>
         </div>
         <div>
-            <label for="sem_year">Semester/Year of Enrollment: </label>
-            <select name="sem_year" id="sem_year" class="required">
+            <label for="semester">Semester/Year of Enrollment: </label>
+            <select name="semester" id="semester" class="required">
                 <option value="" selected="true" disabled="disabled">Choose semester</option>
-                <option value="Freshman">Spring 2017</option>
-                <option value="Sophomore">Fall 2017</option>
-                <option value="Junior">Spring 2018</option>
-                <option value="Senior">Fall 2018</option>
+                <option value="Fall">Fall</option>
+                <option value="Winter">Winter</option>
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
+            </select>
+            <select name="year" id="year" class="required">
+                <option value="" selected="true" disabled="disabled">Choose year</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
             </select>
         </div>
         <div class="clear"></div>
         <div class="left">
             <label for="fname">Student First Name:</label>
-            <input type="text" name="fname" id="fname" class="required" />
+            <input disabled="disabled" type="text" name="fname" id="fname" value="@firstname" class="required" />
         </div>
         <div>
             <label for="lname">Student Last Name:</label>
-            <input type="text" size="30" name="lname" id="lname" class="required" />
+            <input disabled="disabled" type="text" size="30" name="lname" id="lname" value="@lastname" class="required" />
         </div>
         <div class="clear"></div>
         <div class="left">
@@ -138,7 +145,7 @@
         <div class="clear"></div>
         <div style="padding-bottom: 20px">
             <label for="student_email">Student Email:</label>
-            <input type="text" size="40" name="student_email" id="student_email" class="required" />
+            <input disabled="disabled" type="text" size="40" name="student_email" id="student_email" value="@email" class="required" />
         </div>
         <div class="clear"></div>
 
