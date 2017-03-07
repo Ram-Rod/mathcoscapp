@@ -9,19 +9,18 @@
     <link rel="stylesheet" href="Styles/app_print.css" media="print" />
     <link rel="stylesheet" href="Styles/css/jquery-ui/jquery-ui-1.10.3.custom.css" media="screen" />
     <link rel="stylesheet" href="Styles/css/jquery-ui/jquery-ui-plugins.css" media="screen" />
-    <link rel="stylesheet" href="Styles/bootstrap/3.1.1/css/SU.css">
-    <link rel="stylesheet" href="Styles/bootstrap/3.1.1/css/bootstrap.css">
+    @*<link rel="stylesheet" href="Styles/bootstrap/3.1.1/css/SU.css">*@
+    @*<link rel="stylesheet" href="Styles/bootstrap/css/bootstrap.css">*@
     <link rel="stylesheet" href="Styles/StyleSheet.css">
     @*<link type="text/css" href="@Href("~/Styles/StyleSheet.css")" rel="stylesheet" />*@
 
     @*<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>*@
-    <script src="Styles/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-migrate-1.4.1.js"></script>
-    <script src="Styles/jquery/jquery.validate.js" type="text/javascript"></script>
-    <script src="Styles/jquery/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
-    <script src="Styles/jquery/jquery.ui.datePicker.js" type="text/javascript"></script>
-    <script src="Styles/jquery/jquery.ui.timepicker.js" type="text/javascript"></script>
-    <script src="Styles/js/moment.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.validate.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.ui.datePicker.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.ui.timepicker.js" type="text/javascript"></script>
+    <script src="Scripts/moment.min.js" type="text/javascript"></script>
     <script>
         // This gets the appRoot from the server and puts it
         // in js to create a variable I can access from client side.
@@ -57,16 +56,19 @@
         <a class="input-button" href="default.cshtml">Intenship Home</a>
     </div>
     <div style="float: left; margin-right: 10px;">
-        <a class="input-button" href="application.cshtml">Internship Application</a>
+        <a class="input-button" href="application.cshtml">Internship Credit Application</a>
     </div>
     <div style="float: left">
         <a class="input-button" href="WeeklySubmission.cshtml">Weekly Updates</a>
     </div>
     <div style="float: right;  margin-left: 10px;">
-        <a class="input-button" href="@Href("/logout/")">Log Out</a>
+        <a class="input-button" href="logout.cshtml">Log Out</a>
+    </div>
+    <div style="float: right; margin-left: 10px;">
+        <a class="input-button" href="past.cshtml">Past Internships</a>
     </div>
     <div style="float: right">
-        <a class="input-button" href="past.cshtml">Past Internships</a>
+        <a class="input-button" href="postings.cshtml">Internship Postings</a>
     </div>
     
         
