@@ -4,6 +4,15 @@
     Page.Title = "Weekly Submission Form";
 
     Response.Write(Session["email"]);
+
+    var student_email = Session["email"];
+    <!--
+
+        Search MATHCOSC_APPLICATIONS where session email = EMAUL, SELECT ID, that will be put into reports as app_id
+
+
+
+    -->
 }
 <style>
     .row {

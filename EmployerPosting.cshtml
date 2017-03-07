@@ -3,6 +3,11 @@
     Layout = "_SULayout.cshtml";
     Page.Title = "MATHEMATICS AND COMPUTER SCIENCE EMPLOYER JOB POSTING";
 
+    if (IsPost)
+    {
+        <!-- Connect to Database -->
+        var db = Database.Open("MyConnectionString");
+    }
 }
 
 <div id="employer_app" title="new_employer_application">
@@ -56,7 +61,7 @@
         </div>
         <div>
             <span class="label"><label for="intern_req">Internship Requirements:</label></span>
-            <textarea name="intern_req" id="intern_req" class="intern_req"></textarea>
+            <textarea name="intern_req" id="intern_req" rows="" cols="" class="intern_req"></textarea>
         </div>
         <div class="clear"></div>
         <div class="left">
@@ -76,7 +81,7 @@
         </div>
         <div>
             <span class="label"><label for="intern_duties">Internship Duties:</label></span>
-            <textarea name="intern_duties" id="intern_duties" class="goals"></textarea>
+            <textarea name="intern_duties" id="intern_duties" rows="" cols="" class="goals"></textarea>
         </div>
         <div class="clear"></div>
         <input type="Submit" value="submit">
