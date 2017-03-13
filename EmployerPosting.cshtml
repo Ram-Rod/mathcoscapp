@@ -3,28 +3,71 @@
     Layout = "_SULayout.cshtml";
     Page.Title = "MATHEMATICS AND COMPUTER SCIENCE EMPLOYER JOB POSTING";
 
+        <!-- Insert from data into table -->
     if (IsPost)
     {
+
         <!-- Connect to Database -->
         var db = Database.Open("MyConnectionString");
+
+        <!-- Grab contents of the form -->
+        var company_name = Request.Form["company_name"];
+        var sem_year = Request.Form["semester"] + " " + Request.Form["year"];
+        var company_website = Request.Form["company_website"];
+        var compensated = Request.Form["compensated"];
+        var company_url = Request.Form["company_url"];
+        var app_exp = Request.Form["app_exp"];
+        var employee_name = Request.Form["employee_name"];
+        var ssuper = Request.Form["ssuper"];
+        var employee_email = Request.Form["employee_email"];
+        var intern_req = Request.Form["intern_req"];
+        var city = Request.Form["city"];
+        var state = Request.Form["state"];
+        var intern_duties = Request.Form["intern_duties"];
+        var majors = Request.Form["majors"];
+        var major_other = Request.Form["majors_other"];
+        var completed = 1;
+        var approved = 1;
+
+
+        var insertQuery = "INSERT INTO MATHCOSC_APPLICATIONS (COMPANY_NAME, SEM_YEAR, COMPANY_WEBSITE, COMPENSATED, COMPANY_URL, APP_EXP, EMPLOYEE_NAME, SSUPER, EMPLOYEE_EMAIL, INTERN_REQ, CITY, STATE, INTERN_DUTIES, MAJORS, MAJOR_OTHER, COMPLETED, APPROVED) " +
+            "VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12, @13, @14, @15, @16)";
+        db.Execute(insertQuery, company_name, sem_year, company_website, compensated, company_url, app_exp, employee_name, ssuper, employee_email, intern_req, city, state, intern_duties, majors, major_other, completed, approved);
+
+
+
     }
+
 }
 
 <div id="employer_app" title="new_employer_application">
     <form id="entry-form" method="post" enctype="multipart/form-data">
         <h1>Employer Job Posting</h1>
         <div class="left">
-            <span class="label"><label for="cname">Company's Name:</label></span>
-            <input type="text" name="cname" id="cname" class="required" />
+            <span class="label"><label for="company_name">Company's Name:</label></span>
+            <input type="text" name="company_name" id="cname" class="required" />
         </div>
         <div>
-            <span class="label"><label for="sem_year">Semester/Year of Employment: (Ex. Fall 2017)</label></span>
-            <input type="text" name="sem_year" id="sem_year" class="required" />
+            <label for="semester">Semester/Year of Employment: </label>
+            <select name="semester" id="semester" class="required">
+                <option value="" selected="true" disabled="disabled">Choose semester</option>
+                <option value="Fall">Fall</option>
+                <option value="Winter">Winter</option>
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
+            </select>
+            <select name="year" id="year" class="required">
+                <option value="" selected="true" disabled="disabled">Choose year</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+            </select>
         </div>
         <div class="clear"></div>
         <div class="left">
-            <span class="label"><label for="cwebsite">Company's Website:</label></span>
-            <input type="text" name="cwebsite" id="cwebsite" class="required" />
+            <span class="label"><label for="company_website">Company's Website:</label></span>
+            <input type="text" name="company_website" id="cwebsite" class="required" />
         </div> 
         <div>
             <span class="label">Paid or Unpaid Internship:</span>
@@ -33,8 +76,8 @@
         </div>
         <div class="clear"></div>
         <div class="left">
-            <span class="label"><label for="capp">Application URL:</label></span>
-            <input type="text" name="capp" id="capp"/>
+            <span class="label"><label for="company_url">Application URL:</label></span>
+            <input type="text" name="company_url" id="company_url"/>
         </div>
         <div>
             <span class="label"><label for="app_exp">Application Expiration:</label></span>
@@ -52,15 +95,8 @@
         </div>
         <div class="clear"></div>
         <div class="left">
-            <span class="label"><label for="e_email">Employee's Email:</label></span>
-            <input type="text" name="ephone" id="ephone" class="required" />
-        </div>
-        <div>
-            
-        </div>
-        <div class="clear"></div>
-        <div class="left">
-           
+            <span class="label"><label for="employee_email">Employee's Email:</label></span>
+            <input type="text" name="employee_email" id="employee_email" class="required" />
         </div>
         <div>
             <span class="label"><label for="intern_req">Internship Requirements:</label></span>
@@ -71,71 +107,32 @@
             <span class="label"><label for="city">City:</label></span>
             <input type="text" name="city" id="city" class="required" />
         </div>
-        <div class="clear"></div>
-        <div class="left">
-            <span class="label"><label for="state">State:</label></span>
-            <input type="text" name="state" id="state" class="required" />
-        </div>
-        <div class="clear"></div>
-        <div class="left">
-            
-        </div>
         <div>
             <span class="label"><label for="intern_duties">Internship Duties:</label></span>
             <textarea name="intern_duties" id="intern_duties" rows="" cols="" class="goals"></textarea>
         </div>
         <div class="clear"></div>
-        <input type="Submit" value="submit">
-        @*<div class="row">
-            <span class="label"><label for="major">Class Standing:</label></span>
-            <select name="major" id="major" class="required">
-                <option value="" selected="true" disabled="disabled">Choose Standing</option>
-                <option value="Freshman">Freshman</option>
-                <option value="Sophomore">Sophomore</option>
-                <option value="Junior">Junior</option>
-                <option value="Senior">Senior</option>
+        <div class="left">
+            <span class="label"><label for="state">State:</label></span>
+            <input type="text" name="state" id="state" class="required" />
+        </div>   
+        <div>
+            <label for="majors">Majors Wanted: </label>
+            <select name="majors" id="majors" class="required">
+                <option value="" selected="true" disabled="disabled">Choose Major</option>
+                <option value="Math">Math</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Other">Other</option>
             </select>
         </div>
-        <div class="row">
-            <span class="label"><label for="student_address">Student Address:</label></span>
-            <textarea name="student_address" id="student_address" class="required"></textarea>
+        <div class="clear"></div>
+        <div class="left">
         </div>
-        <div class="row">
-            <span class="label"><label for="student_phone">Student Phone Number:</label></span>
-            <input type="text" name="student_phone" id="student_phone" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="advisor_name">Salisbury University Internship Advisor's Name:</label></span>
-            <input type="text" name="advisor_name" id="advisor_name" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="firm_name">Firm or Institution Name:</label></span>
-            <input type="text" name="firm_name" id="firm_name" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="firm_phone">Firm or Institution Phone Number:</label></span>
-            <input type="text" name="firm_phone" id="firm_phone" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="firm_address">Firm or Institution Address:</label></span>
-            <textarea name="firm_address" id="firm_address" class="required"></textarea>
-        </div>
-        <div class="row">
-            <span class="label"><label for="supervior_name">Work Supervisor's Name:</label></span>
-            <input type="text" name="supervior_name" id="supervior_name" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="supervior_title">Work Supervisor's Title:</label></span>
-            <input type="text" name="supervior_title" id="supervior_title" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="internship_name">Brief Name of Internship:</label></span>
-            <input type="text" name="internship_name" id="internship_name" class="required" />
-        </div>
-        <div class="row">
-            <span class="label"><label for="goals">Proposed Goals and Expectations of the Internship:</label></span>
-            <textarea name="firm_address" id="goals" class="goals"></textarea>
-        </div>
-        <input type="submit" value="submit">*@
+        <div>
+            <span class="label"><label for="majors_other">If Other Please Enter Required Major:</label></span>
+            <textarea name="majors_other" id="majors_other" rows="" cols="" class="goals"></textarea>
+        </div>    
+        <div class="clear"></div><br />
+        <input style="font-size: 20px;" class="input-button" type="submit" value="Submit">
     </form>
 </div>
